@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NaijaCareerMate</title>
+<style>
+:root{--bg:#f6f8f6;--text:#14201a;--muted:#4a5a51;--card:#fff;--border:#d5ded8;--primary:#0b6b3a;--primary-text:#fff;--notice-bg:#fff4d6;--notice-text:#5a4300;--notice-border:#e8cf80;--ok:#0b6b3a;--bad:#a12a1a;--unk:#8a6d00;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1511;--text:#e8f0ea;--muted:#a7b8ad;--card:#17211b;--border:#2c3a31;--primary:#2fa564;--primary-text:#06130c;--notice-bg:#33290a;--notice-text:#f3dfa0;--notice-border:#6b5516;--ok:#5fd08d;--bad:#ff8d7d;--unk:#e0c85a}}
+:root[data-theme="dark"]{--bg:#0e1511;--text:#e8f0ea;--muted:#a7b8ad;--card:#17211b;--border:#2c3a31;--primary:#2fa564;--primary-text:#06130c;--notice-bg:#33290a;--notice-text:#f3dfa0;--notice-border:#6b5516;--ok:#5fd08d;--bad:#ff8d7d;--unk:#e0c85a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:17px;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding:20px 16px 40px}
+h1{margin:0 0 8px;font-size:1.5rem}
+header h1{font-size:1.6rem;color:var(--primary)}
+header p{margin:4px 0 0;color:var(--muted)}
+.notice{background:var(--notice-bg);color:var(--notice-text);border:1px solid var(--notice-border);border-radius:12px;padding:12px 14px;margin:14px 0;font-size:.95rem}
+.menu{display:grid;gap:14px;margin-top:8px}
+.big{display:block;width:100%;text-align:left;background:var(--primary);color:var(--primary-text);border:0;border-radius:16px;padding:18px;font:inherit;cursor:pointer;min-height:72px}
+.big strong{display:block;font-size:1.15rem}
+.big span{font-size:.95rem;opacity:.92}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--text);outline-offset:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-top:14px}
+.card h2{margin:0 0 8px;font-size:1.15rem}
+.card ul,.card ol{margin:0;padding-left:22px}
+.card li{margin:6px 0}
+.back{background:none;border:1px solid var(--border);color:var(--text);border-radius:12px;padding:10px 14px;font:inherit;cursor:pointer;margin-bottom:14px;min-height:44px}
+.hidden{display:none}
+footer{margin-top:28px;color:var(--muted);font-size:.9rem}
+label{display:block;font-weight:600;margin:16px 0 4px}
+.hint{font-weight:400;color:var(--muted);font-size:.9rem}
+textarea,input{width:100%;font:inherit;font-size:16px;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 12px}
+textarea{min-height:90px;resize:vertical}
+#f-ad{min-height:200px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{flex:1 1 140px;border:0;border-radius:12px;padding:14px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;background:var(--primary);color:var(--primary-text)}
+.btn.alt{background:none;color:var(--text);border:1px solid var(--border)}
+.err{color:var(--bad);font-weight:600;margin-top:12px}
+.res .card{border-left:6px solid var(--border)}
+.res .ok{border-left-color:var(--ok)}.res .bad{border-left-color:var(--bad)}.res .unk{border-left-color:var(--unk)}
+.res small{display:block;color:var(--muted)}
+.rec{font-weight:600}
+.chk{display:flex;gap:12px;align-items:flex-start;font-weight:400;margin:12px 0}
+.chk input{width:24px;height:24px;flex:none;padding:0;margin-top:3px}
+.chk span{flex:1}
+.filebtn{position:relative;display:block;text-align:center;margin:16px 0 4px;font-weight:600;cursor:pointer;padding:14px;border-radius:12px;background:var(--primary);color:var(--primary-text);min-height:48px}
+.filebtn:focus-within{outline:3px solid var(--text);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;left:0;top:0}
+summary{cursor:pointer;font-weight:600;margin-top:16px;padding:10px 0;min-height:44px}
+.link{background:none;border:0;color:var(--primary);text-decoration:underline;font:inherit;cursor:pointer;padding:6px 0;min-height:44px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section id="home">
+  <header>
+    <h1>NaijaCareerMate</h1>
+    <p>Your simple helper for job applications.</p>
+  </header>
+  <div class="notice"><strong>Prototype – Step 4.</strong> All three tools now work as simple rules and template tools. Nothing here uses AI.</div>
+  <nav class="menu" aria-label="Main menu">
+    <button class="big" data-go="fit"><strong>Check My Job Fit</strong><span>See if a vacancy suits your background.</span></button>
+    <button class="big" data-go="cv"><strong>Improve My CV</strong><span>Prepare a CV for a specific job.</span></button>
+    <button class="big" data-go="letter"><strong>Write My Cover Letter</strong><span>Create a short, personal letter.</span></button>
+  </nav>
+  <footer>Your information stays on your phone. We never promise a job or shortlisting.</footer>
+</section>
+
+<section id="fit" class="hidden">
+  <button class="back" data-go="home">← Back</button>
+  <h1>Check My Job Fit</h1>
+  <div class="notice"><strong>How this works:</strong> a simple keyword-and-rules check that runs on your phone. It is <strong>not AI</strong> and can miss things. Read every result and use your own judgement. It uses only what you type and never invents anything.</div>
+
+  <label class="filebtn">Choose my CV file<input class="cvfile sr" type="file" accept=".docx,.pdf,.txt,application/pdf,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></label>
+  <p class="hint fmsg" role="status">Word (.docx), PDF or text files. The file is read on your phone and sent nowhere. Or paste the text below.</p>
+  <label for="f-cv">Your CV <span class="hint">(easiest: copy the text of your CV and paste it here)</span></label>
+  <textarea id="f-cv" class="sync-cv" placeholder="Paste your CV text here"></textarea>
+  <p class="hint">Saved only on this phone. <button class="link" type="button" data-clear="1">Delete my saved CV</button></p>
+  <label for="f-yrs">Years of work experience <span class="hint">(a number, e.g. 2)</span></label>
+  <input id="f-yrs" type="number" inputmode="numeric" min="0" max="50">
+  <label for="f-loc">Preferred location <span class="hint">(e.g. Kaduna, Abuja, remote)</span></label>
+  <input id="f-loc" type="text">
+  <details><summary>No CV yet? Type your details instead</summary>
+  <label for="f-edu">Education <span class="hint">(degrees, diplomas, year)</span></label>
+  <textarea id="f-edu"></textarea>
+  <label for="f-exp">Work experience <span class="hint">(jobs, roles, what you did)</span></label>
+  <textarea id="f-exp"></textarea>
+  <label for="f-skills">Skills <span class="hint">(separate with commas)</span></label>
+  <textarea id="f-skills"></textarea>
+  <label for="f-other">Other information <span class="hint">(certificates, NYSC, languages)</span></label>
+  <textarea id="f-other"></textarea>
+  </details>
+  <label for="f-ad">Paste the job advert</label>
+  <p class="hint">This app cannot open links. Open the advert, press and hold the text, tap Select all, then Copy. Come back here and paste. If several jobs are listed, paste only the one you want. If the advert is a picture, type its requirements instead.</p>
+  <textarea id="f-ad" class="sync-ad"></textarea>
+
+  <div class="row">
+    <button class="btn" id="go-check">Check my fit</button>
+    <button class="btn alt" id="go-sample">Fill with sample data</button>
+    <button class="btn alt" id="go-clear">Clear form</button>
+  </div>
+  <p class="hint">“Sample data” fills the form with a made-up person and a made-up advert, so you can see how results look.</p>
+  <div class="err" id="f-msg" role="alert"></div>
+  <div class="res" id="results" aria-live="polite"></div>
+</section>
+
+<section id="cv" class="hidden">
+  <button class="back" data-go="home">← Back</button>
+  <h1>Improve My CV</h1>
+  <div class="notice"><strong>How this works:</strong> a rules-based check, <strong>not AI</strong>. It compares your CV with one advert and shows what is missing and what to put first. It never adds anything you did not write, and it does not rewrite your CV yet.</div>
+  <label class="filebtn">Choose my CV file<input class="cvfile sr" type="file" accept=".docx,.pdf,.txt,application/pdf,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></label>
+  <p class="hint fmsg" role="status">Word (.docx), PDF or text files. The file is read on your phone and sent nowhere. Or paste the text below.</p>
+  <label for="c-cv">Your CV <span class="hint">(paste the text)</span></label>
+  <textarea id="c-cv" class="sync-cv" placeholder="Paste your CV text here"></textarea>
+  <p class="hint">Saved only on this phone. <button class="link" type="button" data-clear="1">Delete my saved CV</button></p>
+  <label for="c-ad">Paste the job advert <span class="hint">(one job; text, not a link)</span></label>
+  <textarea id="c-ad" class="sync-ad"></textarea>
+  <div class="row">
+    <button class="btn" id="cv-check">Check my CV</button>
+    <button class="btn alt" id="cv-sample">Fill with sample data</button>
+  </div>
+  <div class="err" id="c-msg" role="alert"></div>
+  <div class="res" id="c-results" aria-live="polite"></div>
+</section>
+
+<section id="letter" class="hidden">
+  <button class="back" data-go="home">← Back</button>
+  <h1>Write My Cover Letter</h1>
+  <div class="notice"><strong>How this works:</strong> a template letter, <strong>not AI</strong>. It uses only your CV and your own words, and you choose which strengths go in. Read every line and make sure it is true before you send it.</div>
+  <label class="filebtn">Choose my CV file<input class="cvfile sr" type="file" accept=".docx,.pdf,.txt,application/pdf,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></label>
+  <p class="hint fmsg" role="status">Word (.docx), PDF or text files. The file is read on your phone and sent nowhere. Or paste the text below.</p>
+  <label for="l-cv">Your CV <span class="hint">(paste the text)</span></label>
+  <textarea id="l-cv" class="sync-cv" placeholder="Paste your CV text here"></textarea>
+  <p class="hint">Saved only on this phone. <button class="link" type="button" data-clear="1">Delete my saved CV</button></p>
+  <label for="l-ad">Paste the job advert <span class="hint">(one job; text, not a link)</span></label>
+  <textarea id="l-ad" class="sync-ad"></textarea>
+  <label for="l-name">Your full name</label>
+  <input id="l-name" type="text" autocomplete="name">
+  <label for="l-title">Job title you are applying for</label>
+  <input id="l-title" type="text">
+  <label for="l-emp">Employer name <span class="hint">(optional)</span></label>
+  <input id="l-emp" type="text">
+  <label for="l-mgr">Person to address <span class="hint">(optional, e.g. Mrs Bello)</span></label>
+  <input id="l-mgr" type="text">
+  <label for="l-why">Why do you want this job? <span class="hint">(optional, 1–2 sentences in your own words)</span></label>
+  <textarea id="l-why" placeholder="Say what really attracts you to this role"></textarea>
+  <label for="l-ex">Your proudest real achievement <span class="hint">(optional; add numbers only if true)</span></label>
+  <textarea id="l-ex" placeholder="What you did, and the result"></textarea>
+  <div class="row">
+    <button class="btn" id="l-prep">Prepare my letter</button>
+    <button class="btn alt" id="l-sample">Fill with sample data</button>
+  </div>
+  <div class="err" id="l-msg" role="alert"></div>
+  <div class="res hidden" id="l-wrap">
+    <div class="card ok"><h2>Tick what is true</h2><p class="hint">These came from word matching, so check each one. Untick anything that is not true for you. Changing a tick rewrites the letter, so edit the text last.</p><div id="l-checks"></div></div>
+    <div class="card"><h2>Your letter</h2>
+      <textarea id="l-out" style="min-height:380px"></textarea>
+      <div class="row"><button class="btn" id="l-copy">Copy letter</button></div>
+      <p class="hint" id="l-cmsg" role="status"></p>
+      <small>This is a draft to edit. It cannot guarantee shortlisting or employment.</small>
+    </div>
+    <div class="card"><h2>Want it more polished?</h2>
+      <p class="hint">Copy a ready-made prompt and paste it into any AI chat app you trust. It tells the AI to use only facts from your CV. This sends your CV to that app, so use one you trust.</p>
+      <div class="row"><button class="btn alt" id="l-ai">Copy prompt for AI chat</button></div>
+      <p class="hint" id="l-amsg" role="status"></p>
+    </div>
+  </div>
+</section>
+
+</div>
+<script>
+(function(){
+var ids=["home","fit","cv","letter"];
+function show(id){if(ids.indexOf(id)<0)id="home";ids.forEach(function(s){document.getElementById(s).classList.toggle("hidden",s!==id);});window.scrollTo(0,0);}
+document.addEventListener("click",function(e){var b=e.target.closest("[data-go]");if(!b)return;var id=b.getAttribute("data-go");try{history.pushState(null,"","#"+id);}catch(x){}show(id);});
+window.addEventListener("popstate",function(){show((location.hash||"#home").slice(1));});
+show((location.hash||"#home").slice(1));
+
+var $=function(i){return document.getElementById(i);};
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
+var FIELDS=["cv","edu","yrs","exp","skills","loc","other","ad"];
+var LINK=/https?:\/\/\S+|www\.\S+/g;
+
+var STOP={};("the and for with that this from have has are was were will shall must should your their our you who all any can able ability such other related relevant including etc into than then them they its not but also well good strong excellent minimum least preferred candidate candidates applicant applicants position role job work working years year experience required requirement requirements knowledge skills skill demonstrated proven proficiency proficient field area plus advantage added highly very more most one two three four five each both either within across using use used per").split(" ").forEach(function(w){STOP[w]=1;});
+var EDU=[[6,/\b(ph\.?d|doctorate)\b/],[5,/\b(master'?s?|m\.?sc|mba|m\.?ed|pgd|postgraduate)\b/],[4,/\b(bachelor'?s?|b\.?sc|b\.?a|b\.?ed|b\.?eng|b\.?tech|llb|first degree|degree)\b/],[3,/\b(hnd|higher national diploma)\b/],[2,/\b(nd|ond|nce|national diploma|diploma)\b/],[1,/\b(ssce|waec|neco|o'?level|secondary school)\b/]];
+var CERT=/\b(ican|acca|cipm|cibn|pmp|cfa|coren|nysc|ccna|anan|citn|cips|mdcn|nmcn|trcn|cima|icsan)\b|driver'?s? licen[cs]e/gi;
+var PLACES="Abia,Adamawa,Akwa Ibom,Anambra,Bauchi,Bayelsa,Benue,Borno,Cross River,Delta,Ebonyi,Edo,Ekiti,Enugu,Gombe,Imo,Jigawa,Kaduna,Kano,Katsina,Kebbi,Kogi,Kwara,Lagos,Nasarawa,Niger,Ogun,Ondo,Osun,Oyo,Plateau,Rivers,Sokoto,Taraba,Yobe,Zamfara,Abuja,Port Harcourt,Ibadan,Jos,Zaria,Maiduguri,Warri,Benin City,Owerri,Abeokuta,Ilorin,Minna,Lokoja,Makurdi,Yola,Gusau,Dutse,Uyo,Calabar,Asaba,Akure,Osogbo,Lafia,Jalingo,Damaturu".split(",");
+var TRANS=[
+[/\b(pos|agent|cash|customer|teller|cashier|shop|supermarket)\b/,/customer|cash|teller|sales|account|bank|client/i,"Serving customers and handling cash carefully"],
+[/\b(teach|tutor|lesson|class|student|pupil)/,/train|present|communicat|educat|facilitat|support|coordinat/i,"Teaching, explaining and managing groups"],
+[/\b(sales|market|promot|sell)/,/sales|market|business development|customer|client/i,"Selling and persuading people"],
+[/\b(writ|content|report|edit|blog)/,/report|writ|communicat|document|content|proposal/i,"Writing and reporting"],
+[/\b(lead|supervis|manag|head|coordinat|captain)/,/lead|supervis|manag|team|coordinat/i,"Leadership and coordination"],
+[/\b(excel|spreadsheet|data|record|analy|ledger)/,/data|record|excel|report|analys|monitor|evaluat/i,"Working with data and records"],
+[/\b(volunt|ngo|communit|outreach|campaign)/,/communit|outreach|ngo|program|field|stakeholder/i,"Community work and outreach"],
+[/\b(computer|software|microsoft|word|powerpoint|google|digital|ai|prompt)\b/,/computer|digital|microsoft|ms office|software|technology/i,"Computer and digital skills"]];
+
+function ranks(t){t=t.toLowerCase();return EDU.filter(function(e){return e[1].test(t);}).map(function(e){return e[0];});}
+
+function getReqs(ad){
+  var txt=ad.replace(/;\s*/g,";\n").replace(/([a-z]{3,}\.)\s+(?=[A-Z])/g,"$1\n");
+  var lines=txt.split(/\n+/).map(function(l){return l.trim();}).filter(Boolean);
+  var PF="((key|essential|minimum|desirable|personal|technical|job|person|candidate|general|required|needed|preferred|mandatory|core|additional|other|relevant|professional|academic|basic|specific) )*",RQ="(requirements?|qualifications?|skills?|competenc(y|ies)|attributes?|specification|criteria|experience)",SEP="\\s*(,|and|&|\\/)\\s*(and\\s+)?";
+  var reqHead=new RegExp("^"+PF+RQ+"("+SEP+PF+RQ+")*:?$","i");
+  var stopHead=/^((key|main|job|major|core) )*(responsibilit(y|ies)|dut(y|ies)|about( us| the (role|job|company|organi[sz]ation))?|benefits?|how to apply|application( process| procedure| method| deadline)?|job description|job summary|what we offer|salary|remuneration|method of application|closing date|deadline|overview)( (and|&) \w+)?:?$/i;
+  var stopWord=/responsibilit|dut(y|ies)|apply|application|offer|benefit|salary|about|description|overview|deadline|closing/i;
+  var reqWord=/requirement|qualif|skill|competenc|attribute|criteria|looking for|must have|should have|will need|ideal|candidate|you have|you will|experience|essential|desirable|education/i;
+  var cue=/\b(b\.?sc|hnd|ond|degree|bachelor|master|mba|ssce|diploma|certificat|years?|yrs|proficien|knowledge|ability|experience|must|required|skilled|licen[cs]e|nysc|ican|acca)\b/i;
+  var inReq=false,inStop=false,rows=[];
+  lines.forEach(function(l){
+    var bul=/^\s*([\-\*•·▪●◦]|\d+[\.\)])/.test(l);
+    var c=l.replace(/^\s*([\-\*•·▪●◦]+|\d+[\.\)])\s*/,"").trim(),w=c.split(/\s+/).length;
+    if(/^(how to apply|method of application|to apply|application (process|procedure|deadline|method)|closing date|deadline)\b/i.test(c)){inReq=false;inStop=true;return;}
+    if(!bul&&c.length<70&&w<=8){
+      var colon=/:$/.test(c);
+      if(stopHead.test(c)||(colon&&stopWord.test(c))){inReq=false;inStop=true;return;}
+      if(reqHead.test(c)||(colon&&reqWord.test(c))){inReq=true;inStop=false;return;}
+      if(colon){inReq=false;inStop=false;return;}
+    }
+    rows.push({c:c,w:w,bul:bul,inReq:inReq,inStop:inStop});
+  });
+  var out=[],seen={};
+  function add(c){c=c.slice(0,200);var k=c.toLowerCase();if(!seen[k]){seen[k]=1;out.push(c);}}
+  rows.forEach(function(r){if(r.w<(r.inReq?2:3))return;if(r.inReq||(!r.inStop&&cue.test(r.c)))add(r.c);});
+  if(out.length<3)rows.forEach(function(r){if(r.bul&&!r.inStop&&r.w>=2)add(r.c);});
+  var fb=false;
+  if(out.length<3){rows.forEach(function(r){if(r.w>=2&&r.w<=14&&!/[.:;]$/.test(r.c)&&!reqHead.test(r.c)&&!stopHead.test(r.c)){add(r.c);fb=true;}});}
+  if(out.length<3&&lines.length<=15){rows.forEach(function(r){if(r.w>=2&&r.w<=25){add(r.c);fb=true;}});}
+  var res=out.slice(0,15);res.fallback=fb;return res;
+}
+
+function reqWarn(R,n,fb){
+  if(n>=3&&!fb)return;
+  var c=card("Please check the advert text","unk");
+  para(c,fb?"I could not find a requirements heading, so I treated each line as a requirement. Please check the list.":"I found only "+n+" requirement"+(n===1?"":"s")+". If the advert has more, paste its full requirements section for one job, then check again.");
+  R.appendChild(c);
+}
+
+function assess(req,cand,eduT,d){
+  var checks=[],opt=/added advantage|an advantage|\badvantage\b|preferred|desirable|\bplus\b|nice to have/i.test(req);
+  var rs=ranks(req);
+  if(rs.length){
+    var need=/\bor\b|\/|equivalent/i.test(req)?Math.min.apply(null,rs):Math.max.apply(null,rs);
+    var have=Math.max.apply(null,ranks(eduT).concat([0]));
+    if(!have)checks.push({s:"cant",n:"No recognisable qualification level was entered."});
+    else if(have>=need)checks.push({s:"met",n:"Your education level appears to meet this. Check the field of study yourself."});
+    else checks.push({s:"not",h:1,n:"The advert asks for a higher qualification level than you entered."});
+  }
+  var seenC={};(req.match(CERT)||[]).forEach(function(m){
+    m=m.toLowerCase();if(seenC[m])return;seenC[m]=1;
+    var ok=m.indexOf("driver")===0?(/driver/.test(cand)&&/licen[cs]e/.test(cand)):new RegExp("\\b"+esc(m)+"\\b").test(cand);
+    checks.push(ok?{s:"met",n:"“"+m.toUpperCase()+"” appears in your information."}:{s:"not",h:1,n:"“"+m.toUpperCase()+"” was not found in what you entered. If you have it, add it."});
+  });
+  var y=req.match(/(\d+)\s*(?:[-–]\s*\d+|to\s*\d+)?\+?\s*(?:years?|yrs?)/i);
+  if(y){
+    if(d.yrs==="")checks.push({s:"cant",n:"You did not enter your years of experience."});
+    else if(+d.yrs>=+y[1])checks.push({s:"met",n:"You entered "+d.yrs+" year(s). Check they are in a similar field."});
+    else checks.push({s:"not",h:1,n:"The advert asks for "+y[1]+"+ years; you entered "+d.yrs+"."});
+  }
+  var kw=!checks.length;
+  if(!checks.length){
+    var seenT={},terms=(req.toLowerCase().match(/[a-z0-9+#]{3,}/g)||[]).filter(function(t){if(STOP[t]||seenT[t])return false;seenT[t]=1;return true;}).slice(0,8);
+    var hit=terms.filter(function(t){var st=t.length>5?t.replace(/(ing|ed|es|s)$/,""):t.replace(/s$/,"");return new RegExp("\\b"+esc(st)+"(s|es|ed|ing|ion|ions|al|er|ers|ment)?\\b").test(cand);});
+    if(hit.length&&hit.length/terms.length>=.5)checks.push({s:"met",n:"Matching words found in your information: "+hit.join(", ")+". Make sure this is true evidence."});
+    else checks.push({s:"cant",n:hit.length?"Only partly matched ("+hit.join(", ")+"). Needs your judgement.":"Nothing clear in your information to confirm this."});
+  }
+  var s=checks.some(function(c){return c.s==="not";})?"not":checks.some(function(c){return c.s==="cant";})?"cant":"met";
+  return{req:req,s:s,n:checks.map(function(c){return c.n;}).join(" "),opt:opt,kw:kw,hard:!opt&&checks.some(function(c){return c.h&&c.s==="not";})};
+}
+
+function locCheck(ad,loc){
+  var a=ad.replace(/\bfct\b/ig,"Abuja"),p=loc.replace(/\bfct\b/ig,"Abuja").toLowerCase();
+  var found=PLACES.filter(function(x){return new RegExp("\\b"+esc(x)+"\\b","i").test(a);});
+  var remote=/\bremote\b|work from home/i.test(ad);
+  if(!found.length&&!remote)return null;
+  var req="Location: the advert mentions "+(found.join(", ")||"remote work")+(found.length&&remote?" and remote work":"")+".";
+  if(!p.trim())return{req:req,s:"cant",n:"You did not enter a preferred location."};
+  var any=/anywhere|any location|nationwide|relocat/.test(p);
+  var hit=any||found.some(function(f){return p.indexOf(f.toLowerCase())>-1;})||(remote&&/remote/.test(p));
+  return hit?{req:req,s:"met",n:"This matches your preferred location."}:{req:req,s:"not",n:"This differs from your preferred location ("+loc.trim()+"). Ask whether relocation is needed."};
+}
+
+function card(title,cls){var c=el("div","card "+(cls||""));c.appendChild(el("h2","",title));return c;}
+function list(items,withNote){
+  var u=el("ul");items.forEach(function(i){var li=el("li","",withNote?i.req:i);if(withNote&&i.n){li.appendChild(el("small","",(i.opt&&i.s==="not"?"Not compulsory (advert calls it an advantage). ":"")+i.n));}u.appendChild(li);});return u;
+}
+
+function analyse(){
+  var d={};FIELDS.forEach(function(k){d[k]=$("f-"+k).value;});
+  var m=$("f-msg");m.textContent="";
+  if(d.ad.trim().length<40){m.textContent="Please paste the job advert first (at least a few lines).";return;}
+  if(d.ad.replace(LINK,"").trim().length<40){m.textContent="That looks like a link. This app cannot open links. Open it, copy the advert text, and paste the text here.";return;}
+  if(!(d.cv+d.edu+d.exp+d.skills+d.other).trim()){m.textContent="Please paste your CV, or type some of your details.";return;}
+  var cand=(d.cv+" "+d.edu+" "+d.exp+" "+d.skills+" "+d.other).toLowerCase(),eduT=d.cv+" "+d.edu+" "+d.other;
+  var rq=getReqs(d.ad),items=rq.map(function(r){return assess(r,cand,eduT,d);});
+  var lc=locCheck(d.ad,d.loc);if(lc)items.push(lc);
+  var R=$("results");R.textContent="";
+  if(!items.length){var c0=card("Result");c0.appendChild(el("p","","I could not find clear requirements in this text. "+(d.ad.match(LINK)?"The advert seems to point to a link for full details. Open the link, copy the requirements text, and paste it here. ":"")+"Paste the full advert for ONE job, including its requirements section, and try again."));R.appendChild(c0);return;}
+  reqWarn(R,rq.length,rq.fallback);
+  var met=items.filter(function(i){return i.s==="met";}),not=items.filter(function(i){return i.s==="not";}),cant=items.filter(function(i){return i.s==="cant";});
+  var sm=card("Summary");sm.appendChild(el("p","rec",met.length+" appear met · "+not.length+" appear not met · "+cant.length+" need your judgement"));sm.appendChild(el("small","","Out of "+items.length+" requirement"+(items.length===1?"":"s")+". \u201CNeed your judgement\u201D means the app could not tell from your information. It does not mean you fail them."));R.appendChild(sm);
+  var c=card("1. Stated job requirements");var ol=el("ol");items.forEach(function(i){ol.appendChild(el("li","",i.req));});c.appendChild(ol);R.appendChild(c);
+  c=card("2. You appear to meet ("+met.length+")","ok");c.appendChild(met.length?list(met,1):el("p","","None could be confirmed from your information."));R.appendChild(c);
+  c=card("3. You appear not to meet ("+not.length+")","bad");c.appendChild(not.length?list(not,1):el("p","","None found."));R.appendChild(c);
+  c=card("4. Cannot be assessed ("+cant.length+")","unk");c.appendChild(cant.length?list(cant,1):el("p","","None."));R.appendChild(c);
+
+  c=card("5. Relevant transferable skills");
+  var mine=d.skills.split(/[,;\n]+/).map(function(s){return s.trim();}).filter(function(s){return s.length>2&&d.ad.toLowerCase().indexOf(s.toLowerCase())>-1;});
+  if(mine.length)c.appendChild(el("p","","Your listed skills that appear in the advert: "+mine.join(", ")+"."));
+  var tr=TRANS.filter(function(t){return t[0].test(cand)&&t[1].test(d.ad);});
+  if(tr.length){c.appendChild(list(tr.map(function(t){return t[2];})));c.appendChild(el("small","","Only claim these if you can give a real example from your life or work."));}
+  if(!mine.length&&!tr.length)c.appendChild(el("p","","No clear matches found. Add more detail about your skills and experience and try again."));
+  R.appendChild(c);
+
+  var q=[];
+  cant.slice(0,4).forEach(function(i){q.push("Can you honestly show evidence for: “"+i.req.slice(0,110)+(i.req.length>110?"…":"")+"”?");});
+  not.forEach(function(i){if(i.hard&&q.length<7)q.push("Does the employer accept equivalent experience or qualifications for: “"+i.req.slice(0,90)+(i.req.length>90?"…":"")+"”?");});
+  if(!/deadline|closing date|apply (by|before)|not later than|no later than|on or before/i.test(d.ad))q.push("The advert does not seem to state a closing date. When and how must you apply?");
+  if(!d.yrs.trim())q.push("How many years of relevant work have you done? Add it for a better check.");
+  c=card("6. Questions to clarify before applying");c.appendChild(list(q.slice(0,8)));R.appendChild(c);
+
+  var H=items.filter(function(i){return i.hard;}),T=items.length,rec;
+  if(H.length)rec="Think carefully before applying. You appear not to meet a main requirement ("+H.map(function(i){return i.req.slice(0,60);}).join("; ")+"). If you do meet it, add the detail and check again, or ask whether equivalents are accepted. Otherwise, closer matches may be a better use of your time.";
+  else if(met.length/T>=.6)rec="Worth considering. You appear to meet most requirements that could be checked. Clarify the open questions first, then use real examples in your CV and cover letter.";
+  else if(met.length)rec="Possible, but check carefully. Many requirements could not be confirmed. Add more detail about your experience and skills, then run the check again.";
+  else rec=rq.length<3?"This result is limited because I found only "+rq.length+" requirement"+(rq.length===1?"":"s")+" in the advert text. Check that you pasted the full requirements for one job, then try again.":"There is not enough information to recommend applying. Add more detail about your education, experience and skills, then try again.";
+  c=card("7. Recommendation");c.appendChild(el("p","rec",rec));c.appendChild(el("small","","This is guidance only. It cannot guarantee shortlisting or employment."));R.appendChild(c);
+  try{R.scrollIntoView({behavior:"smooth"});}catch(x){}
+}
+
+var SAMPLE={cv:"AMINA YUSUF\nKaduna | amina.yusuf@example.com\n\nEDUCATION\nB.Sc. Business Administration, 2022\n\nEXPERIENCE\nSales Assistant, Sunrise Supermarket, 2022 - 2024\n- Served customers and handled cash\n- Kept daily sales records\n\nSKILLS\nCustomer service, Microsoft Excel, communication\n\nNYSC completed 2024. Languages: English and Hausa.",edu:"",yrs:"2",exp:"",skills:"",loc:"Kaduna, Abuja",other:"",ad:"Customer Service Officer – Abuja\nRequirements:\n- B.Sc or HND in Business Administration or a related field\n- Minimum of 3 years experience in customer service\n- Proficiency in Microsoft Office\n- Excellent communication skills in English\n- Knowledge of CRM software\n- NYSC discharge certificate\n- ICAN certification is an added advantage\nHow to apply: send your CV by 30 November."};
+$("go-check").addEventListener("click",analyse);
+
+function termsOf(t){var q={};return(t.toLowerCase().match(/[a-z0-9+#]{3,}/g)||[]).filter(function(w){if(STOP[w]||q[w])return false;q[w]=1;return true;});}
+function inText(t,x){var st=t.length>5?t.replace(/(ing|ed|es|s)$/,""):t.replace(/s$/,"");return new RegExp("\\b"+esc(st)+"(s|es|ed|ing|ion|ions|al|er|ers|ment)?\\b").test(x);}
+function para(c,x){c.appendChild(el("p","",x));}
+function cvCheck(){
+  var cv=$("c-cv").value,ad=$("c-ad").value,m=$("c-msg"),R=$("c-results");m.textContent="";R.textContent="";
+  if(cv.trim().length<60){m.textContent="Please paste your CV text first.";return;}
+  if(ad.replace(LINK,"").trim().length<40){m.textContent="Please paste the job advert text. This app cannot open links.";return;}
+  var reqs=getReqs(ad);
+  if(!reqs.length){m.textContent="I could not find requirements in this advert. Paste the full advert for one job.";return;}
+  var cl=cv.toLowerCase(),n=cv.trim().split(/\s+/).length,q=[];
+  if(!/[\w.+-]+@[\w-]+\.[\w.]+/.test(cv))q.push("I could not find an email address. How can employers email you?");
+  if(!/(\+?234|0)[\s-]?[789][01]\d[\s-]?\d{3}[\s-]?\d{4}/.test(cv))q.push("I could not find a Nigerian phone number. What number should employers call?");
+  if(!/\b(b\.?sc|hnd|ond|nce|degree|bachelor|master|diploma|ssce|waec|neco|university|polytechnic|college)\b/i.test(cv))q.push("I could not find your education. What is your qualification, school and year?");
+  if((cv.match(/\b(19|20)\d\d\b/g)||[]).length<2)q.push("I found few or no dates. When did you study and work in each place?");
+  if(!/\b(experience|employ|intern|volunteer|nysc|assistant|officer|manager|teacher|agent|merchant|worked)/i.test(cv))q.push("I could not find work experience. Do you have jobs, internships, NYSC service or volunteering to list?");
+  if(!/\bskills?\b|proficien|competenc/i.test(cv))q.push("I could not find a skills section. What are your main skills for this job?");
+  if(!/\b(summary|profile|objective|about me)\b/i.test(cv))q.push("Optional: there is no short summary at the top. In two lines, who are you and what job do you want?");
+  if(!/\d+\s*(%|percent|customers|clients|students|people|staff|pupils)/i.test(cv))q.push("Optional: where true, add numbers to your duties, such as how many customers or students you handled.");
+  if(n>700)q.push("Your CV is long ("+n+" words). Most employers prefer one or two pages.");
+  var items=reqs.map(function(r){return assess(r,cl,cv,{yrs:$("f-yrs").value});});
+  var met=items.filter(function(i){return i.s==="met";}),gap=items.filter(function(i){return i.s!=="met";});
+  var w=termsOf(reqs.join(" ")).slice(0,30),have=w.filter(function(t){return inText(t,cl);}),lack=w.filter(function(t){return !inText(t,cl);});
+  reqWarn(R,reqs.length,reqs.fallback);
+  var c=card("1. Missing or unclear in your CV","unk");c.appendChild(q.length?list(q):el("p","","Nothing obvious is missing."));R.appendChild(c);
+  c=card("2. Show these first ("+met.length+")","ok");
+  if(met.length){c.appendChild(list(met,1));para(c,"Move the parts of your CV that prove these to the top of the page.");}else para(c,"No requirement could be clearly matched. Add more detail to your CV.");
+  R.appendChild(c);
+  c=card("3. Not clearly shown yet ("+gap.length+")","bad");
+  if(gap.length){c.appendChild(list(gap,1));para(c,"If you truly have one of these, add it with a real example. If you do not, do not claim it.");}else para(c,"None.");
+  R.appendChild(c);
+  c=card("4. Words from the advert");
+  para(c,"Already in your CV: "+(have.join(", ")||"none found")+".");
+  para(c,"Not found in your CV: "+(lack.join(", ")||"none")+". Add one only if it is true for you, in your own words.");
+  R.appendChild(c);
+  c=card("What is next");para(c,"Step 4 will build the cover letter. A tool to build a CV from scratch, for people with no CV, comes later. This check is guidance only and cannot guarantee shortlisting.");R.appendChild(c);
+  try{R.scrollIntoView({behavior:"smooth"});}catch(x){}
+}
+
+var CVK="ncm_cv";
+function sset(v){try{if(v)localStorage.setItem(CVK,v);else localStorage.removeItem(CVK);}catch(x){}}
+function syncTo(cls,src){document.querySelectorAll("."+cls).forEach(function(t){if(t!==src)t.value=src.value;});}
+var saved="";try{saved=localStorage.getItem(CVK)||"";}catch(x){}
+document.querySelectorAll(".sync-cv").forEach(function(t){t.value=saved;});
+document.addEventListener("input",function(e){var t=e.target,c=" "+(t.className||"")+" ";
+  if(c.indexOf(" sync-cv ")>-1){sset(t.value);syncTo("sync-cv",t);}else if(c.indexOf(" sync-ad ")>-1)syncTo("sync-ad",t);});
+document.addEventListener("click",function(e){if(!e.target.closest("[data-clear]"))return;if(!confirm("Delete your saved CV from this phone?"))return;sset("");document.querySelectorAll(".sync-cv").forEach(function(t){t.value="";});});
+function okSample(id){return !$(id).value.trim()||confirm("This replaces the CV text on screen with a made-up sample. Your saved CV is not deleted unless you edit this text. Continue?");}
+$("go-sample").addEventListener("click",function(){if(!okSample("f-cv"))return;FIELDS.forEach(function(k){$("f-"+k).value=SAMPLE[k];});$("f-msg").textContent="";$("results").textContent="";});
+$("go-clear").addEventListener("click",function(){FIELDS.forEach(function(k){if(k!=="cv")$("f-"+k).value="";});document.querySelectorAll(".sync-ad").forEach(function(t){t.value="";});$("f-msg").textContent="";$("results").textContent="";});
+$("cv-check").addEventListener("click",cvCheck);
+$("cv-sample").addEventListener("click",function(){if(!okSample("c-cv"))return;$("c-cv").value=SAMPLE.cv;$("c-ad").value=SAMPLE.ad;$("c-msg").textContent="";$("c-results").textContent="";});
+
+function xmlToText(x){return x.replace(/<w:tab\/>/g,"\t").replace(/<w:br[^>]*\/>/g,"\n").replace(/<\/w:p>/g,"\n").replace(/<[^>]+>/g,"").replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,"\u0022").replace(/&apos;/g,"\u0027");}
+async function readDocx(buf){
+  var u=new Uint8Array(buf),dv=new DataView(buf),e=-1,i;
+  for(i=u.length-22;i>=Math.max(0,u.length-65557);i--){if(dv.getUint32(i,true)===0x06054b50){e=i;break;}}
+  if(e<0)throw new Error("docx");
+  var cnt=dv.getUint16(e+10,true),p=dv.getUint32(e+16,true);
+  for(var k=0;k<cnt;k++){
+    if(dv.getUint32(p,true)!==0x02014b50)break;
+    var meth=dv.getUint16(p+10,true),cs=dv.getUint32(p+20,true),nl=dv.getUint16(p+28,true),xl=dv.getUint16(p+30,true),cl=dv.getUint16(p+32,true),lh=dv.getUint32(p+42,true);
+    var name=new TextDecoder().decode(u.subarray(p+46,p+46+nl));
+    if(name==="word/document.xml"){
+      var st=lh+30+dv.getUint16(lh+26,true)+dv.getUint16(lh+28,true),data=u.subarray(st,st+cs),xml;
+      if(meth===0)xml=new TextDecoder().decode(data);
+      else if(meth===8){if(typeof DecompressionStream==="undefined")throw new Error("docx");xml=await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text();}
+      else throw new Error("docx");
+      return xmlToText(xml);
+    }
+    p+=46+nl+xl+cl;
+  }
+  throw new Error("docx");
+}
+
+function loadScript(src){return new Promise(function(res,rej){var t=document.createElement("script");t.src=src;t.onload=res;t.onerror=function(){rej(new Error("pdf"));};document.head.appendChild(t);});}
+async function readPdf(buf){
+  try{
+    var base="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+    if(!window.pdfjsLib)await loadScript(base+"pdf.min.js");
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc=base+"pdf.worker.min.js";
+    var pdf=await window.pdfjsLib.getDocument({data:buf}).promise,out=[];
+    for(var i=1;i<=Math.min(pdf.numPages,6);i++){
+      var tc=await(await pdf.getPage(i)).getTextContent(),line="";
+      tc.items.forEach(function(it){line+=it.str+(it.hasEOL?"\n":" ");});
+      out.push(line);
+    }
+    return out.join("\n");
+  }catch(x){throw new Error("pdf");}
+}
+function onFile(inp){
+  var f=inp.files[0];if(!f)return;
+  var sec=inp.closest("section"),ta=sec.querySelector(".sync-cv"),msg=sec.querySelector(".fmsg"),n=f.name.toLowerCase();
+  inp.value="";
+  if(f.size>8*1024*1024){msg.textContent="This file is too large (over 8 MB). Please paste the text instead.";return;}
+  msg.textContent="Reading "+f.name+"…";
+  var timer=new Promise(function(_,rej){setTimeout(function(){rej(new Error("pdf"));},25000);});
+  f.arrayBuffer().then(function(buf){
+    if(/\.docx$/.test(n))return readDocx(buf);
+    if(/\.pdf$/.test(n))return Promise.race([readPdf(buf),timer]);
+    if(/\.txt$/.test(n)||f.type==="text/plain")return new TextDecoder().decode(buf);
+    if(/\.doc$/.test(n))throw new Error("doc");
+    throw new Error("type");
+  }).then(function(t){
+    t=t.replace(/[ \t]+\n/g,"\n").replace(/\n{3,}/g,"\n\n").trim();
+    if(t.length<60){msg.textContent="I could not find enough text in this file. It may be a scanned picture. Please paste your CV text instead.";return;}
+    if(ta.value.trim()&&!confirm("Replace the CV text on screen with the text from this file?")){msg.textContent="Kept your existing text.";return;}
+    ta.value=t;sset(t);syncTo("sync-cv",ta);
+    msg.textContent="Read "+t.split(/\s+/).length+" words from "+f.name+". Please read the text below and fix anything wrong before you continue.";
+  }).catch(function(e){
+    var m={doc:"Old .doc files cannot be read. In Word, use Save as .docx, or paste the text.",type:"Please choose a .docx, .pdf or .txt file.",pdf:"Reading this PDF did not work here. Please open the PDF, copy the text and paste it below.",docx:"I could not read this Word file. Please paste the text below."};
+    msg.textContent=m[e.message]||"I could not read this file. Please paste your CV text instead.";
+  });
+}
+document.addEventListener("change",function(e){if(e.target.classList&&e.target.classList.contains("cvfile"))onFile(e.target);});
+
+document.addEventListener("click",function(e){var b=e.target.closest(".filebtn");if(!b)return;var m=b.closest("section").querySelector(".fmsg");m.textContent="Opening your files… If nothing opens, this viewer may not allow file picking. Open this page in Chrome, or paste your CV text below.";});
+
+var LS={items:[],edu:"",contact:""};
+function cap(t){t=t.replace(/[.;:\s]+$/,"");return t.charAt(0).toUpperCase()+t.slice(1);}
+function sentence(t){return t.replace(/[.;:\s]+$/,"")+".";}
+function chk(id,on,t,note){var l=el("label","chk"),i=el("input"),d=el("span");i.type="checkbox";i.id="l-"+id;i.checked=on;i.setAttribute("aria-label",t);l.appendChild(i);d.appendChild(document.createTextNode(t));d.appendChild(el("small","",note));l.appendChild(d);return l;}
+function V(id){return $("l-"+id).value.trim();}
+function onItems(){return LS.items.filter(function(_,k){var c=$("l-c"+k);return c&&c.checked;});}
+function buildLetter(){
+  var name=V("name"),title=V("title"),emp=V("emp"),mgr=V("mgr"),why=V("why"),ex=V("ex");
+  var on=onItems(),att=on.some(function(i){return i.att;}),pts=on.filter(function(i){return !i.att;});
+  var date=new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
+  var ps=[[name].concat(LS.contact?[LS.contact]:[],[date]).join("\n"),"Dear "+(mgr||"Hiring Manager")+",","RE: APPLICATION FOR "+title.toUpperCase()];
+  ps.push("I am applying for the position of "+title+(emp?" at "+emp:"")+"."+(LS.edu?" I hold "+LS.edu+".":"")+(why?" "+why:""));
+  if(pts.length)ps.push("Here is what I can bring to this role:\n"+pts.map(function(i){return "• "+cap(i.label)+(i.ev?": "+sentence(i.ev):"");}).join("\n"));
+  if(ex)ps.push(ex);
+  ps.push("I would welcome the opportunity to discuss how my background can support "+(emp||"your team")+". "+(att?"My CV is attached for your review. ":"")+"Thank you for your time and consideration.");
+  ps.push("Yours "+(mgr?"sincerely":"faithfully")+",\n"+name);
+  $("l-out").value=ps.join("\n\n");
+}
+function prepLetter(){
+  var m=$("l-msg");m.textContent="";
+  var cv=$("l-cv").value,ad=$("l-ad").value;
+  if(cv.trim().length<60){m.textContent="Please paste or upload your CV first. The letter uses only what is in it.";return;}
+  if(ad.replace(LINK,"").trim().length<40){m.textContent="Please paste the job advert text. This app cannot open links.";return;}
+  if(!V("name")||!V("title")){m.textContent="Please enter your full name and the job title.";return;}
+  var cl=cv.toLowerCase(),DEG=/\b(b\.?sc|hnd|ond|nce|bachelor|master|m\.?sc|mba|ph\.?d|diploma)\b/i;
+  var lines=cv.split(/\n/).map(function(l){return l.replace(/^\s*[\-\*•·▪●◦]+\s*/,"").trim();});
+  var eduLine=lines.filter(function(l){return l.length<=140&&DEG.test(l);})[0]||"";
+  var segs=eduLine.split(/\s*[|–—]\s*/),seg=segs.filter(function(x){return DEG.test(x);})[0]||"";
+  LS.edu=seg.replace(/[,\s]*\(?\b(19|20)\d\d\b.*$/,"").replace(/[.;:\s]+$/,"");
+  var ev=lines.filter(function(l){return l.length>=25&&l.length<=220&&!/@/.test(l)&&l!==l.toUpperCase()&&!DEG.test(l)&&!/\b(19|20)\d\d\b/.test(l);});
+  var e=(cv.match(/[\w.+-]+@[\w-]+\.[\w.]+/)||[""])[0],ph=(cv.match(/(\+?234|0)[\s-]?[789][01]\d[\s-]?\d{3}[\s-]?\d{4}/)||[""])[0];
+  LS.contact=[ph,e].filter(Boolean).join(" | ");
+  var used={};LS.items=[];
+  getReqs(ad).map(function(r){return assess(r,cl,cv,{yrs:""});}).filter(function(i){return i.kw&&i.s==="met"&&i.req.length<=80;}).slice(0,5).forEach(function(i){
+    var ts=termsOf(i.req),best="",bs=0;
+    ev.forEach(function(l){var lc=l.toLowerCase(),sc=ts.filter(function(t){return inText(t,lc);}).length;if(sc>bs){bs=sc;best=l;}});
+    if(best)used[best]=1;
+    LS.items.push({label:i.req,ev:best,on:!!best});
+  });
+  TRANS.forEach(function(t){
+    if(!(t[0].test(cl)&&t[1].test(ad)))return;
+    var f=ev.filter(function(l){return t[0].test(l.toLowerCase())&&!used[l];})[0];
+    if(f){used[f]=1;LS.items.push({label:t[2],ev:f,on:false});}
+  });
+  LS.items.push({label:"Mention that my CV is attached to this application",ev:"",on:true,att:true});
+  var box=$("l-checks");box.textContent="";
+  LS.items.forEach(function(i,k){box.appendChild(chk("c"+k,i.on,i.label,i.att?"Untick this if you are using a form with no attachment.":(i.ev?"From your CV: "+i.ev:"No example found in your CV. Add one to your CV, or write it in the boxes above.")));});
+  $("l-wrap").classList.remove("hidden");buildLetter();
+  try{$("l-wrap").scrollIntoView({behavior:"smooth"});}catch(x){}
+}
+function copyTxt(txt,c){
+  function fb(){var t=document.createElement("textarea"),ok=false;t.value=txt;t.className="sr";document.body.appendChild(t);t.focus();t.select();try{ok=document.execCommand("copy");}catch(x){}document.body.removeChild(t);c.textContent=ok?"Copied.":"Could not copy. Press and hold the text, choose Select all, then Copy.";}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){c.textContent="Copied.";},fb);else fb();
+}
+function aiPrompt(){
+  var pts=onItems().filter(function(i){return !i.att;}).map(function(i){return "- "+i.label;}).join("\n");
+  return ["Write a concise, persuasive cover letter (about 220 words) in formal Nigerian business English for the job below.","",
+  "Strict rules:","- Use ONLY facts that appear in my CV. Do not invent qualifications, employers, achievements, numbers or skills.","- Match my real experience to the job requirements and give one or two specific examples taken from my CV.","- Do not guarantee anything. Avoid cliches such as hard-working team player.","- Do not start with I am writing to apply. Open with something specific about me and the role.","- End with a polite call to action and sign off as: Yours "+(V("mgr")?"sincerely":"faithfully")+", "+V("name"),"",
+  "Job title: "+V("title"),"Employer: "+(V("emp")||"not stated"),"Person to address: "+(V("mgr")||"Hiring Manager"),
+  "Why I want this job (my words): "+(V("why")||"not stated"),"My proudest achievement (my words): "+(V("ex")||"not stated"),
+  "Strengths I want emphasised, only where my CV supports them:\n"+(pts||"- none selected"),"","MY CV:",$("l-cv").value.trim(),"","JOB ADVERT:",$("l-ad").value.trim()].join("\n");
+}
+$("l-prep").addEventListener("click",prepLetter);
+$("l-checks").addEventListener("change",buildLetter);
+$("l-sample").addEventListener("click",function(){if(!okSample("l-cv"))return;$("l-cv").value=SAMPLE.cv;$("l-ad").value=SAMPLE.ad;$("l-name").value="Amina Yusuf";$("l-title").value="Customer Service Officer";$("l-emp").value="Sample Company Ltd";$("l-mgr").value="";$("l-why").value="";$("l-ex").value="";$("l-msg").textContent="";});
+$("l-copy").addEventListener("click",function(){copyTxt($("l-out").value,$("l-cmsg"));});
+$("l-ai").addEventListener("click",function(){copyTxt(aiPrompt(),$("l-amsg"));});
+})();
+</script>
+</body>
+</html>

@@ -93,8 +93,11 @@ summary{cursor:pointer;font-weight:600;margin-top:16px;padding:10px 0;min-height
   <label for="f-other">Other information <span class="hint">(certificates, NYSC, languages)</span></label>
   <textarea id="f-other"></textarea>
   </details>
-  <label for="f-ad">Paste the job advert</label>
-  <p class="hint">This app cannot open links. Open the advert, press and hold the text, tap Select all, then Copy. Come back here and paste. If several jobs are listed, paste only the one you want. If the advert is a picture, type its requirements instead.</p>
+  <label>Advert link <span class="hint">(optional)</span><input class="advurl" type="url" inputmode="url" placeholder="https://"></label>
+  <div class="row"><button class="btn alt getad" type="button">Get advert text from link</button></div>
+  <p class="hint admsg" role="status">Works on many job pages, not all. Facebook, LinkedIn and pages that need a login will not work. Always check the text it brings in.</p>
+  <label for="f-ad">Or paste the job advert text</label>
+  <p class="hint">To copy by hand, press and hold the advert text, tap Select all, then Copy, and paste it here. If several jobs are listed, keep only the one you want. If the advert is a picture, type its requirements instead.</p>
   <textarea id="f-ad" class="sync-ad"></textarea>
 
   <div class="row">
@@ -116,7 +119,10 @@ summary{cursor:pointer;font-weight:600;margin-top:16px;padding:10px 0;min-height
   <label for="c-cv">Your CV <span class="hint">(paste the text)</span></label>
   <textarea id="c-cv" class="sync-cv" placeholder="Paste your CV text here"></textarea>
   <p class="hint">Saved only on this phone. <button class="link" type="button" data-clear="1">Delete my saved CV</button></p>
-  <label for="c-ad">Paste the job advert <span class="hint">(one job; text, not a link)</span></label>
+  <label>Advert link <span class="hint">(optional)</span><input class="advurl" type="url" inputmode="url" placeholder="https://"></label>
+  <div class="row"><button class="btn alt getad" type="button">Get advert text from link</button></div>
+  <p class="hint admsg" role="status">Works on many job pages, not all. Facebook, LinkedIn and pages that need a login will not work. Always check the text it brings in.</p>
+  <label for="c-ad">Or paste the job advert text <span class="hint">(one job)</span></label>
   <textarea id="c-ad" class="sync-ad"></textarea>
   <div class="row">
     <button class="btn" id="cv-check">Check my CV</button>
@@ -135,7 +141,10 @@ summary{cursor:pointer;font-weight:600;margin-top:16px;padding:10px 0;min-height
   <label for="l-cv">Your CV <span class="hint">(paste the text)</span></label>
   <textarea id="l-cv" class="sync-cv" placeholder="Paste your CV text here"></textarea>
   <p class="hint">Saved only on this phone. <button class="link" type="button" data-clear="1">Delete my saved CV</button></p>
-  <label for="l-ad">Paste the job advert <span class="hint">(one job; text, not a link)</span></label>
+  <label>Advert link <span class="hint">(optional)</span><input class="advurl" type="url" inputmode="url" placeholder="https://"></label>
+  <div class="row"><button class="btn alt getad" type="button">Get advert text from link</button></div>
+  <p class="hint admsg" role="status">Works on many job pages, not all. Facebook, LinkedIn and pages that need a login will not work. Always check the text it brings in.</p>
+  <label for="l-ad">Or paste the job advert text <span class="hint">(one job)</span></label>
   <textarea id="l-ad" class="sync-ad"></textarea>
   <label for="l-name">Your full name</label>
   <input id="l-name" type="text" autocomplete="name">
@@ -293,7 +302,7 @@ function analyse(){
   var d={};FIELDS.forEach(function(k){d[k]=$("f-"+k).value;});
   var m=$("f-msg");m.textContent="";
   if(d.ad.trim().length<40){m.textContent="Please paste the job advert first (at least a few lines).";return;}
-  if(d.ad.replace(LINK,"").trim().length<40){m.textContent="That looks like a link. This app cannot open links. Open it, copy the advert text, and paste the text here.";return;}
+  if(d.ad.replace(LINK,"").trim().length<40){m.textContent="That looks like a link. Paste it into the Advert link box above and tap Get advert text, or paste the advert text itself.";return;}
   if(!(d.cv+d.edu+d.exp+d.skills+d.other).trim()){m.textContent="Please paste your CV, or type some of your details.";return;}
   var cand=(d.cv+" "+d.edu+" "+d.exp+" "+d.skills+" "+d.other).toLowerCase(),eduT=d.cv+" "+d.edu+" "+d.other;
   var rq=getReqs(d.ad),items=rq.map(function(r){return assess(r,cand,eduT,d);});
@@ -341,7 +350,7 @@ function para(c,x){c.appendChild(el("p","",x));}
 function cvCheck(){
   var cv=$("c-cv").value,ad=$("c-ad").value,m=$("c-msg"),R=$("c-results");m.textContent="";R.textContent="";
   if(cv.trim().length<60){m.textContent="Please paste your CV text first.";return;}
-  if(ad.replace(LINK,"").trim().length<40){m.textContent="Please paste the job advert text. This app cannot open links.";return;}
+  if(ad.replace(LINK,"").trim().length<40){m.textContent="Please paste the job advert text, or use the Advert link box and tap Get advert text.";return;}
   var reqs=getReqs(ad);
   if(!reqs.length){m.textContent="I could not find requirements in this advert. Paste the full advert for one job.";return;}
   var cl=cv.toLowerCase(),n=cv.trim().split(/\s+/).length,q=[];
@@ -474,7 +483,7 @@ function prepLetter(){
   var m=$("l-msg");m.textContent="";
   var cv=$("l-cv").value,ad=$("l-ad").value;
   if(cv.trim().length<60){m.textContent="Please paste or upload your CV first. The letter uses only what is in it.";return;}
-  if(ad.replace(LINK,"").trim().length<40){m.textContent="Please paste the job advert text. This app cannot open links.";return;}
+  if(ad.replace(LINK,"").trim().length<40){m.textContent="Please paste the job advert text, or use the Advert link box and tap Get advert text.";return;}
   if(!V("name")||!V("title")){m.textContent="Please enter your full name and the job title.";return;}
   var cl=cv.toLowerCase(),DEG=/\b(b\.?sc|hnd|ond|nce|bachelor|master|m\.?sc|mba|ph\.?d|diploma)\b/i;
   var lines=cv.split(/\n/).map(function(l){return l.replace(/^\s*[\-\*•·▪●◦]+\s*/,"").trim();});
@@ -519,6 +528,22 @@ $("l-checks").addEventListener("change",buildLetter);
 $("l-sample").addEventListener("click",function(){if(!okSample("l-cv"))return;$("l-cv").value=SAMPLE.cv;$("l-ad").value=SAMPLE.ad;$("l-name").value="Amina Yusuf";$("l-title").value="Customer Service Officer";$("l-emp").value="Sample Company Ltd";$("l-mgr").value="";$("l-why").value="";$("l-ex").value="";$("l-msg").textContent="";});
 $("l-copy").addEventListener("click",function(){copyTxt($("l-out").value,$("l-cmsg"));});
 $("l-ai").addEventListener("click",function(){copyTxt(aiPrompt(),$("l-amsg"));});
+
+var HELPER="https://naijacareermate-helper.mansuralwali.workers.dev";
+document.addEventListener("click",function(e){
+  var b=e.target.closest(".getad");if(!b)return;
+  var sec=b.closest("section"),inp=sec.querySelector(".advurl"),msg=sec.querySelector(".admsg"),ta=sec.querySelector(".sync-ad"),u=inp.value.trim();
+  if(!/^https?:\/\//i.test(u)){msg.textContent="Please paste a full link that starts with http or https.";return;}
+  if(ta.value.trim()&&!confirm("Replace the advert text on screen with the text from this link?"))return;
+  msg.textContent="Getting the advert…";b.disabled=true;
+  fetch(HELPER+"/read?url="+encodeURIComponent(u)).then(function(r){return r.json();}).then(function(j){
+    if(!j.ok){msg.textContent=j.error||"Could not read that link. Please paste the advert text instead.";return;}
+    var t=(j.title?j.title+"\n\n":"")+j.text;
+    document.querySelectorAll(".sync-ad").forEach(function(x){x.value=t;});
+    document.querySelectorAll(".advurl").forEach(function(x){x.value=u;});
+    msg.textContent="Advert text loaded"+(j.truncated?" (long page, trimmed)":"")+". Please read it and delete anything that is not part of this job.";
+  }).catch(function(){msg.textContent="Could not reach the helper. Check your internet connection, or paste the advert text instead.";}).then(function(){b.disabled=false;});
+});
 })();
 </script>
 </body>
